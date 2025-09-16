@@ -67,56 +67,52 @@ int main(int argc, char* argv[]) {
         switch (choice) {
          	case 1: {
                		// TODO: implement menu logic
-			char name[100];
-			double gpa;
-			cout << "Enter name and GPA: ";
-			cin >> name >> gpa;
-			try {	
-				addStudent(name, gpa, names, gpas, size, capacity);
-			} catch (const char* msg) {
-				cout << msg << endl;
-			}
-			break;
+				char name[100];
+				double gpa;
+				cout << "Enter name and GPA: ";
+				cin >> name >> gpa;
+				try {	
+					addStudent(name, gpa, names, gpas, size, capacity);
+				} catch (const char* msg) {
+					cout << msg << endl;
+				}
+				break;
+			} case 2: {
+                // TODO: implement menu logic
+               	int index;
+				double newGPA;
+				cout << "Enter index and new GPA: ";
+				cin >> index;
+				if (index >= 0 && index < size) {
+					cin >> newGPA;
+					updateGPA(&gpas[index], newGPA);
+				} else {
+					cout << "Invalid index" << endl;
+				}
+	    		break;
+           	} case 3: {
+                // TODO: implement menu logic
+				for (int i = 0; i < size; i++) {
+					printStudent(names[i], gpas[i]);
+				}
+	            break;
+            } case 4: {
+                // TODO: implement menu logic
+				try {
+					double avg = averageGPA(gpas, size);
+					cout << "Average GPA= " << avg << " (" <<  static_cast<int>(avg) << ")" << endl;
+				} catch (const char* msg) {
+					cout << msg << endl;
+				}
+				break;
+           	} case 5: {
+                std::cout << "Goodbye!" << std::endl;
+                break;
+           	}
+            default: {
+                std::cout << "Invalid choice" << std::endl;
+           	}
 		}
-          	case 2: {
-                // TODO: implement menu logic
-               		int index;
-			double newGPA;
-			cout << "Enter index and new GPA: ";
-			cin >> index;
-			if (index >= 0 && index < size) {
-				cin >> newGPA;
-				updateGPA(&gpas[index], newGPA);
-			} else {
-				cout << "Invalid index" << endl;
-			}
-    			break;
-           	}
-            	case 3: {
-                // TODO: implement menu logic
-			for (int i = 0; i < size; i++) {
-				printStudent(names[i], gpas[i]);
-			}
-               		break;
-            	}
-            	case 4: {
-                // TODO: implement menu logic
-			try {
-				double avg = averageGPA(gpas, size);
-				cout << "Average GPA= " << avg << " (" <<  static_cast<int>(avg) << ")" << endl;
-			} catch (const char* msg) {
-				cout << msg << endl;
-			}
-			break;
-           	}
-            	case 5: {
-                	std::cout << "Goodbye!" << std::endl;
-                	break;
-           	}
-            	default: {
-                	std::cout << "Invalid choice" << std::endl;
-           	}
-	}
     } while (choice != 5);
 
     // TODO: free memory
